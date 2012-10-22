@@ -1,0 +1,11 @@
+[% MACRO render_tpl( template ) ; PERL ; %]
+    $template
+[% END ; END ; %]
+
+[% MACRO render_tpl2( template ) ;%]
+    $template
+[% END ; %]
+
+[% renter_tpl2('cabecalho.tt') %]
+[% renter_tpl('cabecalho.tt') %]
+[% INCLUDE 'index.tt' %]

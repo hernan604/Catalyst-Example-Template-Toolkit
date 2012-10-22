@@ -1,0 +1,8 @@
+Teste de aplicação com Template Toolkit e Catalyst utilizando template inteligente que verifica se exte tpl na ordem:
+
+Tenta encontrar na loja1 , e se não encontrar, cai no template padrão.
+
+/xyz/loja1/template_customizado.tpl
+/xyz/padrao/template_padrao.tpl
+
+Utiliza uma macro que esta em root/src/wrapper.tt2, la tem uma macro chamada render_tpl2(template) que recebe um template.. e ali dentro é verfirificado se o tpl existe... se não existir então renderiza tpl padrão... se existir tenta renderizar o tpl customizado.

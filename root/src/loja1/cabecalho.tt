@@ -1,0 +1,4 @@
+CABECALHO - LOJA1
+<br>
+[% PROCESS 'menu.tt' %]
+<br>
