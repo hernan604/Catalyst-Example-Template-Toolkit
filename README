@@ -2,16 +2,29 @@ The problem is... 1 app, for too many clients. Clients like custom templates.
 
 Q: How to solve (easily) ?
 A: Create a TT macro that verifies if template exists in 2 places, with the following order:
-*** The verification must happen everytime i PROCESS/INCLUDE something.. 
+    *** The verification must happen everytime i PROCESS/INCLUDE something.. 
 
-- /myapp/templates/mystore.com      <=- check here first, try to find a custom template
-- /myapp/templates/default          <=- check here afterwards (if none custom template has been found)
-** so it will always check 2 dirs... the current store and the default one.
+    - /myapp/templates/mystore.com      <=- check here first, try to find a custom template
+    - /myapp/templates/default          <=- check here afterwards (if none custom template has been found)
+    ** so it will always check 2 dirs... the current store and the default one.
+
+How can you see it working? 
+
+    $ git clone git@github.com:hernan604/Catalyst-Example-Template-Toolkit.git
+    $ cd Catalyst-Example-Template-Toolkit
+    $ script/catalyst_example_template_toolkit_server.pl -rdp 9000
+
+then in browser:
+
+    http://localhost:9000/index/loja1.com.br  <--- very customised example
+    http://localhost:9000/index/loja2.com.br  <--- just a standard tpl
 
 So how it works? 
-- my wrapper.tt:
-    [% PROCESS "macros.tt2" %]
-    [% find_tpl( template.name ); PROCESS $c.stash.tpl_found %]
+    - my wrapper.tt:
+        [% PROCESS "macros.tt2" %]
+        [% find_tpl( template.name ); PROCESS $c.stash.tpl_found %]
 
-- the templates:
-    [% find_tpl( 'contato/telefones.tt' ); PROCESS $c.stash.tpl_found %]
+    - the templates:
+        [% find_tpl( 'contato/telefones.tt' ); PROCESS $c.stash.tpl_found %]
+
+
