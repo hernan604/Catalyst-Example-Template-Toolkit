@@ -1,0 +1,32 @@
+[% MACRO find_tpl( tpl ) PERL %]
+#   #use Data::Printer; print p $stash->get( 'c' )->{stash}->{loja_atual};
+#   warn "dentro de root/src/wrapper.tt2 - loja atual: " . $stash->get( 'c' )->{stash}->{loja_atual};
+#   print "Nome do template: " . $stash->get( 'tpl' );
+    #
+    # This macro will try to find templates in 'store1.com' dirs.. if not found,
+    # then it will render from 'default' dir
+    # Given you have:
+    #
+    # /templates/store1.com     <- try here first
+    # /templates/default        <- try here afterwards
+    # /templates/store2.com
+    #
+
+    my $tpl_custom   = Catalyst::Example::Template::Toolkit->path_to( 'root', 'src', ) .
+                        "/default/" . $stash->get( 'tpl' );
+    my $tpl_standard = Catalyst::Example::Template::Toolkit->path_to( 'root', 'src', ) .
+        "/". $stash->get( 'c' )->{stash}->{loja_atual} ."/" . $stash->get( 'tpl' );
+    if ( ! -e $tpl_standard ) {
+        warn $tpl_custom;
+        $stash->get( 'c' )->{stash}->{tpl_found} = $tpl_custom;
+        #print $context->process($tpl_custom);
+    } elsif ( -e $tpl_standard ) {
+        warn $tpl_standard;
+        $stash->get( 'c' )->{stash}->{tpl_found} = $tpl_standard;
+        #print $context->process($tpl_standard);
+    }
+[% END ; %]
+
+[% MACRO show( something ) PERL %]
+    #return $stash->get( 'something' );
+[% END %]

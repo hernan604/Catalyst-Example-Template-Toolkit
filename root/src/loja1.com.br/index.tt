@@ -1,0 +1,5 @@
+INDEX ( Loja1.com.br )
+<br>
+[% dados %]
+
+[% find_tpl( 'footer.tt2' ); PROCESS $c.stash.tpl_found %]

@@ -1,13 +1,2 @@
-[% MACRO render_tpl2( template ) PERL %]
-    #use Data::Printer; print p $stash->get( 'c' )->{stash}->{loja_atual};
-    warn "dentro de root/src/wrapper.tt2 - loja atual: " .  $stash->get( 'c' )->{stash}->{loja_atual};
-    print "Nome do template: " . $stash->get( 'template' );
-    if ( -e "/Users/nixus/catalyst/tt/Catalyst-Example-Template-Toolkit/root/src/loja1/cabecalho.tt" ) {
-        print "Encontrei: /Users/nixus/catalyst/tt/Catalyst-Example-Template-Toolkit/root/src/loja1/cabecalho.tt";
-    }
-[% END ; %]
-
-[% render_tpl2('cabecalho.tt') %]
-[%#renter_tpl('cabecalho.tt') %]
-[%#INCLUDE 'index.tt' %]
-
+[% PROCESS "macros.tt2" %]
+[% find_tpl( template.name ); PROCESS $c.stash.tpl_found %]

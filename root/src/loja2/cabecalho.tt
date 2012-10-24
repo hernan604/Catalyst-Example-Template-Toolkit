@@ -1,3 +1,0 @@
-CABECALHO - LOJA2
-<br>
-[% PROCESS 'menu.tt' %]

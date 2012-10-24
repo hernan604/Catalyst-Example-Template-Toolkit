@@ -1,0 +1,2 @@
+<br>FOOTER "custom, da loja1"
+[% find_tpl( 'contato/telefones.tt' ); PROCESS $c.stash.tpl_found %]

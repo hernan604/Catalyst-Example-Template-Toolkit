@@ -26,13 +26,13 @@ The root page (/)
 
 =cut
 
-sub index :Path :Args(0) {
-    my ( $self, $c ) = @_;
-    # Hello World
+sub index :Path("/index") :Args(1) {
+    my ( $self, $c, $current_store ) = @_;
     $c->stash(
-        loja_atual => 'loja1',
-        template => 'index.tt',
-        current_view => 'HTML',
+        loja_atual      => $current_store, #this can come from catalyst::Request
+        current_view    => 'HTML',
+        template        => 'index.tt',
+        dados           => "dados do stash",
     );
 }
 
