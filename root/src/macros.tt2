@@ -14,8 +14,10 @@
 
     my $tpl_custom   = Catalyst::Example::Template::Toolkit->path_to( 'root', 'src', ) .
                         "/default/" . $stash->get( 'tpl' );
+
     my $tpl_standard = Catalyst::Example::Template::Toolkit->path_to( 'root', 'src', ) .
         "/". $stash->get( 'c' )->{stash}->{loja_atual} ."/" . $stash->get( 'tpl' );
+
     if ( ! -e $tpl_standard ) {
         warn $tpl_custom;
         $stash->get( 'c' )->{stash}->{tpl_found} = $tpl_custom;
